@@ -1,3 +1,6 @@
+# Fox, Chicken and Grain Riddle Problem Agent
+# Made by John Paul Monter
+
 from collections import deque
 
 class State:
@@ -17,6 +20,7 @@ class State:
         # Check if item1 would eat item2 when left alone
         return not (item1 == item2 and self.farmer != item1)
     
+    # Returns the moves or the states
     def possible_moves(self):
         moves = []
         for item in ["farmer", "fox", "chicken", "grain"]:
@@ -31,6 +35,7 @@ class State:
                     moves.append(new_state)
         return moves
     
+    # Checks to see if all of items are on the other side of the river
     def is_goal_state(self):
         return (
             self.farmer == 1 and
@@ -63,15 +68,17 @@ def breadth_first_search(initial_state):
 
 def print_solution(solution):
     if solution:
-        num_valid_states = len(solution)
-        print("Number of valid states:", num_valid_states)
+        no_valid_states = len(solution)
+        print("Number of Valid States:", no_valid_states)
+        print("Solution found!")
         print("|-----------|--------|------------|----------|")
         for i, state in enumerate(solution):
             print(f"{state}")
-        print("Solution found!")
     else:
         print("No solution found.")
 
-# Initial state: Farmer, Fox, Chicken, Grain (0 represents they are on the starting side)
-# initial_state = State(0, 1, 0, 1)
-# print_solution(breadth_first_search(initial_state))
+# Initial state: Farmer, Fox, Chicken, Grain 
+# (0 represents they are on the left side)
+# (1 represents they are on the other side)
+initial_state = State(0, 1, 1, 0)
+print_solution(breadth_first_search(initial_state))
