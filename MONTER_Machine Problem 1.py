@@ -80,5 +80,5 @@ def print_solution(solution):
 # Initial state: Farmer, Fox, Chicken, Grain 
 # (0 represents they are on the left side)
 # (1 represents they are on the other side)
-initial_state = State(0, 1, 1, 0)
+initial_state = State(0, 1, 0, 0)
 print_solution(breadth_first_search(initial_state))
